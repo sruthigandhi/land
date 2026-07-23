@@ -71,7 +71,8 @@ st.subheader("Drivers of Risk")
 st.write("Below are the factors pushing this county's risk score, ranked by impact.")
 
 # Compute SHAP for this specific county
-county_shap = explainer.shap_values(np.array([county_features_scaled]))[0]
+county_features_scaled_2d = np.array([county_features_scaled])
+county_shap = explainer.shap_values(county_features_scaled_2d)[0]
 
 # Create driver DataFrame
 drivers = pd.DataFrame({
@@ -87,10 +88,8 @@ drivers = drivers.sort_values("Abs Impact", ascending=False)
 for idx, row in drivers.head(4).iterrows():
     if row["SHAP Impact"] < 0:
         impact_text = f"Increases risk by {abs(row['SHAP Impact']):.2f}"
-        color = "red"
     else:
         impact_text = f"Decreases risk by {row['SHAP Impact']:.2f}"
-        color = "green"
     
     st.write(f"**{row['Driver']}**")
     st.write(f"Current value: {row['Value']:.2f} — {impact_text}")
