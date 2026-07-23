@@ -39,7 +39,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 
 # ---- Train model ----
 print("Training logistic regression on 4 features...\n")
-model = LogisticRegression(random_state=42, max_iter=1000)
+model = LogisticRegression(random_state=42, max_iter=1000, class_weight='balanced')
 model.fit(X_train, y_train)
 
 # ---- Evaluate ----
