@@ -71,7 +71,7 @@ st.subheader("Drivers of Risk")
 st.write("Below are the factors pushing this county's risk score, ranked by impact.")
 
 # Compute SHAP for this specific county
-county_shap = explainer.shap_values([county_features_scaled])[0]
+county_shap = explainer.shap_values(np.array([county_features_scaled]))[0]
 
 # Create driver DataFrame
 drivers = pd.DataFrame({
