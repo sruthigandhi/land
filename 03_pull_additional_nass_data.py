@@ -1,3 +1,6 @@
+import os
+from dotenv import load_dotenv
+load_dotenv()
 """
 Pull additional NASS data for feature engineering:
 - Farm count by county
@@ -11,7 +14,7 @@ import requests
 import pandas as pd
 import os
 
-API_KEY = "REMOVED_NASS_KEY"
+API_KEY = os.getenv("NASS_API_KEY")
 BASE_URL = "https://quickstats.nass.usda.gov/api/api_GET/"
 
 def pull_nass(commodity_desc, statisticcat_desc, year):

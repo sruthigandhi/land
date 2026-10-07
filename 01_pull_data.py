@@ -1,3 +1,6 @@
+import os
+from dotenv import load_dotenv
+load_dotenv()
 """
 Pulls real Kentucky county-level farmland data from the USDA NASS QuickStats API.
 Get a free API key first: https://quickstats.nass.usda.gov/api (instant, just email)
@@ -9,7 +12,7 @@ import requests
 import pandas as pd
 import os
 
-API_KEY = "REMOVED_NASS_KEY"  # Your key
+API_KEY = os.getenv("NASS_API_KEY")  # Your key
 BASE_URL = "https://quickstats.nass.usda.gov/api/api_GET/"
 
 def pull_land_in_farms(year):
